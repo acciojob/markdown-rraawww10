@@ -14,13 +14,13 @@ function App() {
   return (
     <div className="app">
       <div className="textarea">
-        <textarea 
+        <textarea className="markdown-input"
           value={markdown} 
           onChange={(e) => setMarkdown(e.target.value)} 
         />
       </div>
       <div className="preview">
-        <div dangerouslySetInnerHTML={{ __html: preview }} /> 
+        <div className="markdown-preview" dangerouslySetInnerHTML={{ __html: preview }} /> 
       </div>
     </div>
   );

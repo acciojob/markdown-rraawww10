@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
-
+import marked from 'marked';
 
 function App() {
   const [markdown, setMarkdown] = useState('');
@@ -12,16 +12,12 @@ function App() {
   }, [markdown]); 
 
   return (
-    <div className="app">
-      <div className="textarea">
-        <textarea className="markdown-input"
-          value={markdown} 
-          onChange={(e) => setMarkdown(e.target.value)} 
-        />
-      </div>
-      <div className="preview">
-        <div className="markdown-preview" dangerouslySetInnerHTML={{ __html: preview }} /> 
-      </div>
+    <div className="App">
+      <textarea 
+        value={markdown} 
+        onChange={(e) => setMarkdown(e.target.value)} 
+      />
+      <div className="preview" dangerouslySetInnerHTML={{ __html: preview }} /> 
     </div>
   );
 }

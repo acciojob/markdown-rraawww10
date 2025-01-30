@@ -20,7 +20,8 @@
     "react-dom": "^16.13.1",
     "style-loader": "^1.2.1",
     "webpack-cli": "^3.3.12",
-    "marked": "^5.0.0"
+    "marked": "^5.0.0",
+    "react-markdown": "^8.0.0"
   },
   "jest": {
     "moduleNameMapper": {

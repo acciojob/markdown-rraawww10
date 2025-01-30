@@ -1,27 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import * as marked from 'marked'; // Correct import
+import React, { useState, useEffect } from "react";
+import { marked } from "marked";
+import "./styles/App.css";
 
-function MarkdownEditor() {
-  const [markdownText, setMarkdownText] = useState('# Hello world');
-  const [htmlText, setHtmlText] = useState('');
 
-  useEffect(() => {
-    const generatedHtml = marked.parse(markdownText); // Use marked.parse
-    setHtmlText(generatedHtml);
-  }, [markdownText]);
+function App() {
+    const [markdown, setMarkdown] = useState("# Hello world");
+    const [htmlContent, setHtmlContent] = useState("");
 
-  const handleMarkdownChange = (event) => {
-    setMarkdownText(event.target.value);
-  };
+    useEffect(() => {
+        setHtmlContent(marked(markdown));
+    }, [markdown]);
 
-  return (
-    <div className="markdown-container">
-      <div className="editor">
-        <textarea value={markdownText} onChange={handleMarkdownChange} />
-      </div>
-      <div className="preview" dangerouslySetInnerHTML={{ __html: htmlText }} />
-    </div>
-  );
+    return (
+        <div className="app">
+            <textarea
+                className="textarea"
+                value={markdown}
+                onChange={(e) => setMarkdown(e.target.value)}
+            />
+            <div
+                className="preview"
+                dangerouslySetInnerHTML={{ __html: htmlContent }}
+            />
+        </div>
+    );
 }
 
-export default MarkdownEditor;
+export default App;

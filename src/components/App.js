@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import marked from 'marked';
+import * as marked from 'marked'; // Correct import
 
 function MarkdownEditor() {
   const [markdownText, setMarkdownText] = useState('# Hello world');
   const [htmlText, setHtmlText] = useState('');
 
   useEffect(() => {
-    const generatedHtml = marked(markdownText);
+    const generatedHtml = marked.parse(markdownText); // Use marked.parse
     setHtmlText(generatedHtml);
   }, [markdownText]);
 

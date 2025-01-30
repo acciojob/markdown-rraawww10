@@ -1,30 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { marked } from "marked";
-import "../styles/App.css";
+import ReactMarkdown from "react-markdown";
+import "./App.css";
 
-function App() {
-    const [markdown, setMarkdown] = useState("# Hello world");
-    const [htmlContent, setHtmlContent] = useState("");
+function Markdown() {
+  const [markdown, setMarkdown] = useState("");
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        setHtmlContent(marked(markdown));
-    }, [markdown]);
+  const handleChange = (e) => {
+    setMarkdown(e.target.value);
+  };
 
+  const changeLoadingVar = () => {
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    setTimeout(changeLoadingVar, 3000);
+  }, []);
+
+  if (loading) {
     return (
-        <div className="app">
-            <textarea
-                className="textarea"
-                value={markdown}
-                onChange={(e) => setMarkdown(e.target.value)}
-                data-testid="markdown-textarea" // Added a data-testid for testing purposes
-            />
-            <div
-                className="preview"
-                dangerouslySetInnerHTML={{ __html: htmlContent }}
-                data-testid="html-preview" // Added a data-testid for testing purposes
-            />
-        </div>
+      <div className="loading">
+        <h1>Loading...</h1>
+      </div>
     );
+  }
+
+  return (
+    <div className="app">
+      <textarea className="textarea" onChange={handleChange} />
+      <ReactMarkdown className="preview">{markdown}</ReactMarkdown>
+    </div>
+  );
 }
 
-export default App;
+export default Markdown;

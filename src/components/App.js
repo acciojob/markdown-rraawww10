@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { marked } from "marked";
-import "./styles/App.css";
+import "./App.css";
 
 
 function App() {
